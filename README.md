@@ -1,3 +1,1 @@
-# auth0-demo
-# auth0-demo
-# auth0-demo
+# Vue.js + Express.js + Auth0 Demo
