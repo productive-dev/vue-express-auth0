@@ -4,7 +4,6 @@ import Router from "vue-router";
 
 const ID_TOKEN_KEY = "id_token";
 const ACCESS_TOKEN_KEY = "access_token";
-
 const CLIENT_ID = "x4U3oJiwzi7qcRQG9npx0ZIp2DPa7qiQ";
 const CLIENT_DOMAIN = "wesdoyle.auth0.com";
 const REDIRECT = "http://localhost:8080/callback";
@@ -16,7 +15,7 @@ const auth = new auth0.WebAuth({
   domain: CLIENT_DOMAIN
 });
 
-export function login() {
+export function login(): void {
   auth.authorize({
     responseType: "token id_token",
     redirectUri: REDIRECT,
@@ -29,79 +28,69 @@ const router = new Router({
   mode: "history"
 });
 
-export function logout() {
+export function logout(): void {
   clearIdToken();
   clearAccessToken();
+  // @ts-ignore
   router.go("/");
 }
 
-export function requireAuth(to, from, next) {
-  if (!isLoggedIn()) {
-    next({
-      path: "/",
-      query: { redirect: to.fullPath }
-    });
-  } else {
-    next();
-  }
-}
-
-export function getAccessToken() {
+export function getAccessToken(): string | null {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
-export function getIdToken() {
+export function getIdToken(): string | null {
   return localStorage.getItem(ID_TOKEN_KEY);
 }
 
-export function getUser(accessToken: string) {
-  console.log(auth.client.userInfo(accessToken || "", () => {}));
-}
-
-function clearIdToken() {
+function clearIdToken(): void {
   localStorage.removeItem(ID_TOKEN_KEY);
 }
 
-function clearAccessToken() {
+function clearAccessToken(): void {
   localStorage.removeItem(ACCESS_TOKEN_KEY);
 }
 
 // Helper function that will allow us to extract the access_token and id_token
-function getParameterByName(name) {
-  let match = RegExp("[#&]" + name + "=([^&]*)").exec(window.location.hash);
+function getParameterByName(name: string) {
+  const match = RegExp("[#&]" + name + "=([^&]*)").exec(window.location.hash);
   return match && decodeURIComponent(match[1].replace(/\+/g, " "));
 }
 
 // Get and store access_token in local storage
-export function setAccessToken() {
-  let accessToken = getParameterByName("access_token");
-  localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+export function setAccessToken(): void {
+  const accessToken = getParameterByName("access_token");
+  localStorage.setItem(ACCESS_TOKEN_KEY, accessToken!);
 }
 
 // Get and store id_token in local storage
-export function setIdToken() {
-  let idToken = getParameterByName("id_token");
-  localStorage.setItem(ID_TOKEN_KEY, idToken);
+export function setIdToken(): void {
+  const idToken = getParameterByName("id_token");
+  localStorage.setItem(ID_TOKEN_KEY, idToken!);
 }
 
-export function isLoggedIn() {
+export function isLoggedIn(): boolean {
   const idToken = getIdToken();
   return !!idToken && !isTokenExpired(idToken);
 }
 
-function getTokenExpirationDate(encodedToken) {
+function getTokenExpirationDate(encodedToken: string): Date | null {
   const token = decode(encodedToken);
+  // @ts-ignore
   if (!token.exp) {
     return null;
   }
 
   const date = new Date(0);
+  // @ts-ignore
   date.setUTCSeconds(token.exp);
 
   return date;
 }
 
-function isTokenExpired(token) {
+function isTokenExpired(token: string) {
   const expirationDate = getTokenExpirationDate(token);
+  // @ts-ignore
   return expirationDate < new Date();
 }
+

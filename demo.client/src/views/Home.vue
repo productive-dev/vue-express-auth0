@@ -32,15 +32,15 @@
 </template>
 
 <script>
-  import {getAccessToken, getIdToken, getUser, isLoggedIn} from '../utils/auth-service';
+  import {getAccessToken, getIdToken, isLoggedIn} from "../utils/auth-service";
 
   export default {
-    name: 'Home',
+    name: "Home",
     components: { },
     data() {
       return {
-        idToken: '',
-        accessToken: '',
+        idToken: "",
+        accessToken: "",
       };
     },
     methods: {
@@ -53,17 +53,13 @@
       getAccessToken() {
         return getAccessToken();
       },
-      getUser() {
-        return getUser(this.accessToken);
-      }
     },
     mounted() {
       this.idToken = this.getIdToken();
       this.accessToken = this.getAccessToken();
-      console.log('sending with', this.accessToken)
       getUser(this.accessToken);
     },
-  }
+  };
 </script>
 
 <style>

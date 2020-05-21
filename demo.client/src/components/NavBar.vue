@@ -1,7 +1,6 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="dark">
     <b-navbar-brand href="#">Notes</b-navbar-brand>
-
     <b-navbar-nav>
       <b-nav-item href="/">Home</b-nav-item>
       <b-nav-item href="/notes">Notes</b-nav-item>
@@ -31,9 +30,9 @@
   </b-navbar>
 </template>
 <script>
-  import { isLoggedIn, login, logout } from '../utils/auth-service';
+  import { isLoggedIn, login, logout } from "../utils/auth-service";
   export default {
-    name: 'app-nav',
+    name: "app-nav",
     methods: {
       handleLogin() {
         login();
@@ -47,9 +46,3 @@
     },
   };
 </script>
-<style scoped>
-  .navbar-right { margin-right: 0px !important}
-  .log {
-    margin: 5px 10px 0 0;
-  }
-</style>

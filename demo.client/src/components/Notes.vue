@@ -53,18 +53,15 @@
   </div>
 </template>
 <script>
-  import AppNav from './NavBar';
-  import { isLoggedIn } from '../utils/auth-service';
-  import { getPublicNotes, getPrivateNotes } from '../utils/notes-service';
+  import { isLoggedIn } from "../utils/auth-service";
+  import { getPublicNotes, getPrivateNotes } from "../utils/notes-service";
   export default {
-    name: 'publicNotes',
-    components: {
-      AppNav,
-    },
+    name: "publicNotes",
+    components: { },
     data() {
       return {
-        publicNotes: '',
-        privateNotes: '',
+        publicNotes: "",
+        privateNotes: "",
         isLoading: false,
       };
     },
@@ -85,18 +82,18 @@
           .then((notes) => {
             this.privateNotes = notes;
           }).catch(() => {
-          this.makeToast()
+          this.makeToast();
         }).finally(() => {
           this.isLoading = false;
         });
       },
 
       makeToast() {
-        this.$bvToast.toast('You cannot view private notes', {
-          title: 'Unauthorized',
-          variant: 'danger',
+        this.$bvToast.toast("You cannot view private notes", {
+          title: "Unauthorized",
+          variant: "danger",
           solid: true
-        })
+        });
       }
     },
 

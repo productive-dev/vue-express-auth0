@@ -1,24 +1,24 @@
 <template>
   <div>
-    <app-nav />
+    <nav-bar />
     <router-view/>
   </div>
 </template>
 
 <script>
-  import AppNav from '@/components/AppNav.vue'
+  import NavBar from "@/components/NavBar.vue";
 
   export default {
-    name: 'App',
+    name: "App",
     components: {
-      AppNav
+      NavBar
     }
-  }
+  };
 </script>
 
 <style lang="scss">
-  @import '~bootstrap';
-  @import '~bootstrap-vue';
+  @import "~bootstrap";
+  @import "~bootstrap-vue";
 
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
