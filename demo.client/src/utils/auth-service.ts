@@ -4,11 +4,11 @@ import Router from "vue-router";
 
 const ID_TOKEN_KEY = "id_token";
 const ACCESS_TOKEN_KEY = "access_token";
-const CLIENT_ID = "x4U3oJiwzi7qcRQG9npx0ZIp2DPa7qiQ";
-const CLIENT_DOMAIN = "wesdoyle.auth0.com";
+const CLIENT_ID = "your_client_id";
+const CLIENT_DOMAIN = "your_client_domain";
 const REDIRECT = "http://localhost:8080/callback";
 const SCOPE = "full_access";
-const AUDIENCE = "http://pd-demo-api.com";
+const AUDIENCE = "your_audience";
 
 const auth = new auth0.WebAuth({
   clientID: CLIENT_ID,
