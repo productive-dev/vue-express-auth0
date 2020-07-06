@@ -16,11 +16,11 @@ const authCheck = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: "https://wesdoyle.auth0.com/.well-known/jwks.json"
+    jwksUri: "your_jwks_uri"
   }),
   // This is the identifier we set when we created the API
-  audience: 'http://pd-demo-api.com',
-  issuer: "https://wesdoyle.auth0.com/",
+  audience: 'your_audience',
+  issuer: "your_auth_domain",
   algorithms: ['RS256']
 });
 
