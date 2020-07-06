@@ -3,7 +3,7 @@ import {getAccessToken} from "@/utils/auth-service";
 
 const BASE_URL = "http://localhost:8000";
 
-export { getPublicNotes, getPrivateNotes};
+export { getPublicNotes, getPrivateNotes };
 
 function getPublicNotes() {
   const url = `${BASE_URL}/api/public-notes`;
